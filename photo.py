@@ -20,6 +20,7 @@ def get_exif_and_arrange_img(imgfile,imgfilename,outdir):
         if (not os.path.isdir(videodir)):
             os.mkdir(videodir)
         newvideofilename = imgfilename[:imgfilename.rfind('.')] + '_' + str(random.randint(1,999)) + imgfilename[imgfilename.rfind('.'):]
+        newvideofilename = imgfilename
         shutil.copyfile(imgfile,videodir + '\\' + newvideofilename)
     else:
         try:
@@ -30,6 +31,7 @@ def get_exif_and_arrange_img(imgfile,imgfilename,outdir):
             if (not os.path.isdir(otherdir)):
                 os.mkdir(otherdir)
             newphotofilename = imgfilename[:imgfilename.rfind('.')] + '_' + str(random.randint(1,999)) + imgfilename[imgfilename.rfind('.'):]
+            newphotofilename = imgfilename
             shutil.copyfile(imgfile,otherdir + '\\' + newphotofilename)
         else:
             if (exif_data):
@@ -48,6 +50,9 @@ def get_exif_and_arrange_img(imgfile,imgfilename,outdir):
                         photodate = value.replace(':','')[0:6]
                         fulldate = value.replace(':','')
                         print(fulldate)
+                    #if (decoded == 'DateTimeDigitized'):
+                    #    createdate = value.replace(':','').replace(' ','-')
+                    #    print(''+'************'+createdate)
                     #end
                 #begin
                 
@@ -56,16 +61,17 @@ def get_exif_and_arrange_img(imgfile,imgfilename,outdir):
                 newfulldate = fulldate.replace(' ','_')                
                 print(imgfile + '---' + device + '---' + photodate + '---' +  newfulldate)
                 #设备名目录
-                devicedir = outdir + '\\' + device
-                if (not os.path.isdir(devicedir)):
-                    os.mkdir(devicedir)
+                #devicedir = outdir + '\\' + device
+                #if (not os.path.isdir(devicedir)):
+                #    os.mkdir(devicedir)
                 #拍照时间
-                device_datedir = devicedir +  '\\' + photodate
+                device_datedir = outdir +  '\\' + photodate
                 if (not os.path.isdir(device_datedir)):
                     os.mkdir(device_datedir)
                 #文件名
                 newphotofilename = newfulldate  + '_' + str(random.randint(1,9999999)) + imgfilename[imgfilename.rfind('.'):]
-                shutil.copyfile('IMG_'+ imgfile,device_datedir + '\\' + newphotofilename)
+                newphotofilename = imgfilename
+                shutil.copyfile(imgfile,device_datedir + '\\' + newphotofilename)
                 img.close()
                 #end
 
