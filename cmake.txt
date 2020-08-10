@@ -1,0 +1,3 @@
+set(bbbbb ON)
+set(ccc OFF)
+set(aaaaaa ON)

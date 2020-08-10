@@ -75,8 +75,8 @@ def get_exif_and_arrange_img(imgfile,imgfilename,outdir):
                 img.close()
                 #end
 
-rootdir = "D:\\junfile\\1-t\\quen"
-outdir = "D:\\junfile\\1-t\\quen\\outdir"
+rootdir = "D:\\sisi-20200305"
+outdir = "xxx"
 
 for parent,dirnames,filenames in os.walk(rootdir):
     for filename in filenames:
